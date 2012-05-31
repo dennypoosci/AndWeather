@@ -82,6 +82,7 @@ public class AndWeathActivity<Picture> extends Activity {
     ArrayList<String> queryString;
 //	private String[] lv_arr = {};
 //   	private ListView mainListView = null;
+//  comment
     final String SETTING_TODOLIST = "todolist";
     final String SETTING_WEBRADAR = "todowebradar";
     final String SETTING_STCODES = "todosc";
