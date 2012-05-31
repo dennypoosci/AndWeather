@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<STATECODES>
+<ITEM title="United States         US"/>
+<ITEM title="Alabama               AL"/>
+<ITEM title="Arizona               AZ"/>
+<ITEM title="Arkansas              AR"/>
+<ITEM title="California            CA"/>
+<ITEM title="Colorado              CO"/>
+<ITEM title="Connecticut           CT"/>
+<ITEM title="Delaware              DE"/>
+<ITEM title="Doc                   DC"/>
+<ITEM title="Florida               FL"/>
+<ITEM title="Georgia               GA"/>
+<ITEM title="Hawaii                HI"/>
+<ITEM title="Idaho                 ID"/>
+<ITEM title="Illinois              IL"/>
+<ITEM title="Indiana               IN"/>
+<ITEM title="Iowa                  IA"/>
+<ITEM title="Kansas                KS"/>
+<ITEM title="Kentucky              KY"/>
+<ITEM title="Louisiana             LA"/>
+<ITEM title="Maine                 ME"/>
+<ITEM title="Maryland              MD"/>
+<ITEM title="Massachusetts         MA"/>
+<ITEM title="Michigan              MI"/>
+<ITEM title="Minnesota             MN"/>
+<ITEM title="Mississippi           MS"/>
+<ITEM title="Missouri              MO"/>
+<ITEM title="Montana               MT"/>
+<ITEM title="Nebraska              NE"/>
+<ITEM title="Nevada                NV"/>
+<ITEM title="New Hampshire         NH"/>
+<ITEM title="New Jersey            NJ"/>
+<ITEM title="New Mexico            NM"/>
+<ITEM title="New York              NY"/>
+<ITEM title="North Carolina        NC"/>
+<ITEM title="North Dakota          ND"/>
+<ITEM title="Ohio                  OH"/>
+<ITEM title="Oklahoma              OK"/>
+<ITEM title="Oregon                OR"/>
+<ITEM title="Pennsylvania          PA"/>
+<ITEM title="Rhode Island          RI"/>
+<ITEM title="South Carolina        SC"/>
+<ITEM title="South Dakota          SD"/>
+<ITEM title="Tennessee             TN"/>
+<ITEM title="Texas                 TX"/>
+<ITEM title="Utah                  UT"/>
+<ITEM title="Vermont               VT"/>
+<ITEM title="Virginia              VA"/>
+<ITEM title="Washington            WA"/>
+<ITEM title="West Virginia         WV"/>
+<ITEM title="Wisconsin             WI"/>
+<ITEM title="Wyoming               WY"/>
+<ITEM title="Alberta               AB"/>
+<ITEM title="British Columbia      BC"/>
+<ITEM title="Manitoba              MB"/> 
+<ITEM title="Nova Scotia           NS"/>
+<ITEM title="Newfoundland-Labrador NF"/>
+<ITEM title="Northwest Territories NT"/>
+<ITEM title="Nunavut               NU"/> 
+<ITEM title="Ontario               ON"/>
+<ITEM title="Quebec                QB"/>
+<ITEM title="Saskatchewan          SK"/>
+<ITEM title="Yukon                 YT"/>
+    
+</STATECODES>

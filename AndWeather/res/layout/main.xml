@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/widget0"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+ >
+
+    
+<ViewFlipper
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/flip"
+	    >    
+    <RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+     <WebView 
+        android:id="@+id/webview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+    />
+
+
+</LinearLayout>
+</RelativeLayout>
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    >
+
+
+ 
+ 
+<TableLayout
+android:id="@+id/tlayout"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="horizontal"
+android:background="@color/Blue"
+
+>
+     <TableRow
+android:id="@+id/trow6"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="horizontal"
+android:gravity="center"
+android:paddingLeft="5dp"
+>
+
+    <EditText
+	android:id="@+id/editSearch"
+	android:inputType="text"
+    android:layout_width="0dp"
+    android:layout_weight="7"
+ 
+	android:layout_height="fill_parent"
+	android:text="Zip">
+        
+     </EditText>    
+    <Button android:text="Search" 
+
+        android:id="@+id/btnSearch" 
+        android:layout_height="fill_parent" 
+        android:layout_width="0dip"
+        android:layout_weight="2"      
+        >
+  
+    </Button>
+   <Button android:id="@+id/speakButton"
+        android:layout_width="0dip"
+        android:onClick="speakButtonClicked"
+        android:layout_height="fill_parent"
+        android:text="Ask Me!" 
+         android:layout_weight="2"         
+        />
+   <Button android:id="@+id/listenButton"
+        android:layout_width="0dip"
+        android:onClick="speakButtonClicked"
+        android:layout_height="fill_parent"
+        android:text="Listen!" 
+         android:layout_weight="2"         
+        />
+   
+</TableRow>
+    
+<TableRow
+android:id="@+id/trow1"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="horizontal"
+android:gravity="center"
+android:paddingLeft="5dp"
+
+>
+<TextView
+android:id="@+id/cond1"
+android:textStyle="bold"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:text="Cond1"
+android:gravity="center"
+android:textSize="16sp"
+
+>
+</TextView>
+<TextView
+android:id="@+id/cond2"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:text="Cond2" 
+android:textStyle="bold"
+android:gravity="center"
+android:textSize="16sp"
+>
+</TextView>
+<TextView
+android:id="@+id/cond3"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:text="Cond3"
+android:textStyle="bold"
+android:gravity="center"
+android:textSize="16sp"
+>
+</TextView><TextView
+android:id="@+id/cond4"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:text="Cond4"
+android:textStyle="bold"
+android:gravity="center"
+android:visibility="gone"
+android:textSize="16sp"
+>
+</TextView>
+</TableRow>
+<TableRow
+android:id="@+id/trow2"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="horizontal"
+android:gravity="center"
+android:paddingLeft="5dp"
+>
+<ImageView
+android:id="@+id/imgd1"
+android:layout_width="30dp"
+android:layout_height="fill_parent"
+
+android:gravity="center"
+
+>  
+</ImageView>    
+ <ImageView
+android:id="@+id/imgd2"
+android:layout_width="30dp"
+android:layout_height="fill_parent"
+
+android:gravity="center"
+>    
+</ImageView>
+ <ImageView
+android:id="@+id/imgd3"
+android:layout_width="30dp"
+android:layout_height="fill_parent"
+
+android:gravity="center"
+>    
+</ImageView>
+ <ImageView
+android:id="@+id/imgd4"
+android:layout_width="30dp"
+android:layout_height="fill_parent"
+android:visibility="gone"
+android:gravity="center"
+>    
+</ImageView>
+</TableRow>
+<TableRow
+android:id="@+id/trow3"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="horizontal"
+android:gravity="center"
+android:paddingLeft="5dp"
+>
+<TextView
+android:id="@+id/day1"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:textStyle="bold"
+android:text="Day1"
+android:gravity="center"
+android:textSize="17sp"
+>
+</TextView>
+<TextView
+android:id="@+id/day2"
+android:textStyle="bold"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:text="Day2"
+android:gravity="center"
+android:textSize="17sp"
+>
+</TextView><TextView
+android:id="@+id/day3"
+android:textStyle="bold"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:text="Day3"
+android:gravity="center"
+android:textSize="17sp"
+>
+</TextView>
+<TextView
+android:id="@+id/day4"
+android:textStyle="bold"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:text="Day4"
+android:gravity="center"
+android:visibility="gone"
+android:textSize="17sp"
+>
+</TextView>
+</TableRow>
+<TableRow
+android:id="@+id/trow4"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="horizontal"
+android:gravity="center"
+android:textStyle="bold"
+android:paddingLeft="5dp"
+>
+<TextView
+android:id="@+id/high1"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:text="High1"
+android:gravity="center"
+android:textSize="17sp"
+>
+</TextView>
+<TextView
+android:id="@+id/high2"
+android:textStyle="bold"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:text="High2"
+android:gravity="center"
+android:textSize="17sp"
+>
+</TextView>
+<TextView
+android:id="@+id/high3"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:text="High3"
+android:textStyle="bold"
+android:gravity="center"
+android:textSize="17sp"
+>
+</TextView>
+<TextView
+android:id="@+id/high4"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:text="High4"
+android:textStyle="bold"
+android:gravity="center"
+android:visibility="gone"
+android:textSize="17sp"
+>
+</TextView>
+</TableRow>
+<TableRow
+android:id="@+id/trow5"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="horizontal"
+android:gravity="center"
+android:paddingLeft="5dp"
+>
+
+<TextView
+    android:id="@+id/low1"
+    android:layout_width="110dp"
+android:textStyle="bold"
+    android:layout_height="fill_parent"
+    android:text="Low1" 
+    android:gravity="center"
+    android:textSize="17sp"
+    >
+    
+
+</TextView>
+<TextView
+android:id="@+id/low2"
+android:layout_width="110dp"
+android:layout_height="fill_parent"
+android:text="Low2"
+android:textStyle="bold"
+android:gravity="center"
+android:textSize="17sp"
+>
+</TextView>
+<TextView
+android:id="@+id/low3"
+android:layout_width="110dp"
+android:layout_height="fill_parent"
+android:textStyle="bold"
+android:text="Low3"
+android:gravity="center"
+android:textSize="17sp"
+>
+</TextView>
+<TextView
+android:id="@+id/low4"
+android:layout_width="110dp"
+android:layout_height="fill_parent"
+android:textStyle="bold"
+android:text="Low4"
+android:gravity="center"
+android:visibility="gone"
+android:textSize="17sp"
+>
+</TextView>
+</TableRow>
+<TableRow
+android:id="@+id/trow7"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="horizontal"
+android:gravity="center"
+android:paddingLeft="5dp"
+>
+
+<TextView
+android:id="@+id/city"
+android:layout_width="fill_parent"
+android:layout_weight="1" 
+android:layout_height="fill_parent"
+android:gravity="center"
+android:text=""
+android:textColor="@color/Pink"
+android:background="@color/Red"
+android:textSize="17sp"
+>
+</TextView>
+<TextView
+android:id="@+id/ccond"
+android:layout_width="fill_parent"
+android:layout_weight="1" 
+android:layout_height="fill_parent"
+android:gravity="center"
+android:text=""
+android:textColor="@color/Pink"
+android:background="@color/Red"
+
+android:textSize="17sp"
+>
+</TextView>
+<TextView
+android:id="@+id/ctemp"
+android:layout_width="fill_parent"
+android:layout_weight="1" 
+android:layout_height="fill_parent"
+android:gravity="center"
+android:text=""
+android:textColor="@color/Pink"
+android:background="@color/Red"
+
+android:textSize="17sp"
+>
+</TextView>
+</TableRow>
+<TableRow
+android:id="@+id/trow8"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="horizontal"
+android:gravity="center"
+android:paddingLeft="5dp"
+>
+ <ListView android:id="@+id/list"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="1" />
+ 
+</TableRow>
+</TableLayout>
+
+        
+ </RelativeLayout> 
+ <RelativeLayout
+         android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+<TableLayout
+android:id="@+id/ttlayout"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="horizontal"
+android:background="@color/Blue"
+
+>
+     <TableRow
+android:id="@+id/ttrow1"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="horizontal"
+android:gravity="center"
+android:paddingLeft="5dp"
+>
+
+<TextView
+android:id="@+id/cccond"
+android:layout_width="110dp"
+android:layout_height="fill_parent"
+android:text="Ccond"
+android:textStyle="bold"
+android:gravity="center"
+android:textSize="17sp"
+>
+</TextView>    
+</TableRow>
+<TableRow
+android:id="@+id/ttrow2"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="horizontal"
+android:gravity="center"
+android:paddingLeft="5dp"
+>
+
+<TextView
+android:id="@+id/cctemp"
+android:layout_width="110dp"
+android:layout_height="fill_parent"
+android:text="Low2"
+android:textStyle="bold"
+android:gravity="center"
+android:textSize="17sp"
+>
+</TextView>
+    </TableRow><TableRow
+android:id="@+id/ttrow3"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="horizontal"
+android:gravity="center"
+android:paddingLeft="5dp"
+>
+
+<TextView
+android:id="@+id/cwind"
+android:layout_width="110dp"
+android:layout_height="fill_parent"
+android:text="Cwind"
+android:textStyle="bold"
+android:gravity="center"
+android:textSize="17sp"
+>
+</TextView>
+<TextView
+android:id="@+id/cdate"
+android:layout_width="110dp"
+android:layout_height="fill_parent"
+android:text="Cwind"
+android:textStyle="bold"
+android:gravity="center"
+android:visibility="gone"
+android:textSize="17sp"
+>
+</TextView>
+</TableRow>
+
+    </TableLayout>
+   </LinearLayout>    
+ </RelativeLayout>  
+</ViewFlipper>
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+<LinearLayout
+    android:id="@+id/widget41"
+    style="@android:style/ButtonBar"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_x="2dip"
+    android:layout_y="313dip"
+    android:orientation="horizontal" 
+    android:visibility="gone">
+
+    <Button android:text="@string/Radar" android:layout_weight="1"  android:id="@+id/btnRadar" android:layout_height="fill_parent" android:layout_width="wrap_content"></Button>
+    <Button android:text="@string/NWSObs" android:layout_weight="1"  android:id="@+id/btnNSWObs" android:layout_height="fill_parent" android:layout_width="wrap_content"></Button>
+    <Button android:text="@string/Google" android:layout_weight="1" android:id="@+id/bntGoogle" android:layout_height="fill_parent" android:layout_width="wrap_content"></Button>
+    <Button android:text="@string/Pstate" android:layout_weight="1" android:visibility="gone" android:id="@+id/btnPstate" android:layout_height="fill_parent" android:layout_width="wrap_content"></Button>
+    <Button android:text="@string/WUObs" android:layout_weight="1" android:visibility="gone" android:id="@+id/btnWUObs" android:layout_height="fill_parent" android:layout_width="wrap_content"></Button>
+</LinearLayout>
+</RelativeLayout>
+</AbsoluteLayout>

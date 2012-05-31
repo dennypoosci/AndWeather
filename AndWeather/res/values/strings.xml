@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="Save">Save</string>
+    <string name="Back">Back</string>
+    <string name="Clear">Clear</string>
+    <string name="hello">Hello World, AndWeather!</string>
+    <string name="app_name">  AndWeather</string>
+    <string name="Radar">Radar</string>
+    <string name="NWSObs">US Obs</string>
+    <string name="Google">Google Weather</string>
+    <string name="Pstate">Ply</string>
+    <string name="WUObs">WU</string>
+    <string name="hstring"></string>
+    <string name="desc">Image View</string> 
+</resources>

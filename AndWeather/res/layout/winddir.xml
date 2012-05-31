@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<windDir>
+<item title="North                   N       " description = "" ></item>
+<item title="North by east           NbE     " description = "" ></item>
+<item title="North-northeast         NNE     " description = "" ></item>
+<item title="Northeast by north      NEbN    " description = "" ></item>
+<item title="Northeast               NE      " description = "" ></item>
+<item title="Northeast by east       NEbE    " description = "" ></item>
+<item title="East-northeast          ENE     " description = "" ></item>
+<item title="East by north           EbN     " description = "" ></item>
+<item title="East                    E       " description = "" ></item>
+<item title="East by south           EbS     " description = "" ></item>
+<item title="East-southeast          ESE     " description = "" ></item>
+<item title="Southeast by east       SEbE    " description = "" ></item>
+<item title="Southeast               SE      " description = "" ></item>
+<item title="Southeast by south      SEbS    " description = "" ></item>
+<item title="South-southeast         SSE     " description = "" ></item>
+<item title="South by east           SbE     " description = "" ></item>
+<item title="South                   S       " description = "" ></item>
+<item title="South by west           SbW     " description = "" ></item>
+<item title="South-southwest         SSW     " description = "" ></item>
+<item title="Southwest by south      SWbS    " description = "" ></item>
+<item title="Southwest               SW      " description = "" ></item>
+<item title="Southwest by west       SWbW    " description = "" ></item>
+<item title="West-southwest          WSW     " description = "" ></item>
+<item title="West by south           WbS     " description = "" ></item>
+<item title="West                    W       " description = "" ></item>
+<item title="West by north           WbN     " description = "" ></item>
+<item title="West-northwest          WNW     " description = "" ></item>
+<item title="Northwest by west       NWbW    " description = "" ></item>
+<item title="Northwest               NW      " description = "" ></item> 
+<item title="Northwest by north      NWbN    " description = "" ></item>
+<item title="North-northwest         NNW     " description = "" ></item>
+<item title="North by west           NbW     " description = "" ></item>
+                              
+</windDir>

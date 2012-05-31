@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : menu.xml
+    Created on : March 16, 2011, 7:14 PM
+    Author     : Dennis
+    Description:
+        Purpose of the document follows.
+-->
+
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/radar" android:title="Choose Radar" />
+    <item android:id="@+id/obs"  android:title="Choose Obs" />
+    <item android:id="@+id/gweather"  android:title="Google Weather" />    
+    <item android:id="@+id/exit" android:title="Exit" />
+</menu>
+
+
+

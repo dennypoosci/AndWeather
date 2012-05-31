@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : todolist.xml
+    Created on : March 17, 2011, 8:57 AM
+    Author     : Dennis
+    Description:
+        Purpose of the document follows.
+-->
+
+ <TODOFSIZE>
+     <ITEM title="usa>US - United States" description="" />
+     <ITEM title="lit>AR - Little Rock" description="" />
+     <ITEM title="prc>AZ - Prescott" description="" />
+     <ITEM title="bfl>CA - Bakersfield" description="" />
+     <ITEM title="den>CO - Denver" description="" />
+     <ITEM title="hfd>CT - Hartford" description="" />
+     <ITEM title="eyw>FL - Key West" description="" />
+     <ITEM title="pie>FL - Saint Petersburg" description="" />
+     <ITEM title="csg>GA - Columbus" description="" />
+     <ITEM title="dsm>IA - Des Moines" description="" />
+     <ITEM title="myl>ID - McCall" description="" />
+     <ITEM title="spi>IL - Springfield" description="" />
+     <ITEM title="sln>KS - Salina" description="" />
+     <ITEM title="bwg>KY - Bowling Green" description="" />
+     <ITEM title="msy>LA - New Orleans" description="" />
+     <ITEM title="cad>MI - Cadillac" description="" />
+     <ITEM title="stc>MN - Saint Cloud" description="" />
+     <ITEM title="jef>MO - Jefferson City" description="" />
+     <ITEM title="tvr>MS - Vicksburg" description="" /> 
+     <ITEM title="lwt>MT - Lewistown" description="" />
+     <ITEM title="clt>NC - Charlotte" description="" />
+     <ITEM title="bis>ND - Bismarck" description="" />
+     <ITEM title="lbf>NE - North Platte" description="" />
+     <ITEM title="bml>NH - Berlin" description="" />
+     <ITEM title="row>NM - Roswell" description="" />
+     <ITEM title="rno>NV - Reno" description="" />
+     <ITEM title="bgm>NY - Binghamton" description="" />
+     <ITEM title="day>OH - Dayton" description="" />
+     <ITEM title="law>OK - Lawton" description="" />
+     <ITEM title="rdm>OR - Redmond" description="" />
+     <ITEM title="pir>SD - Pierre" description="" />
+     <ITEM title="bro>TX - Brownsville" description="" />
+     <ITEM title="sat>TX - San Antonio" description="" />
+     <ITEM title="pvu>UT - Provo" description="" />
+     <ITEM title="fcx>VA - Roanoke" description="" />
+     <ITEM title="shd>VA - Staunton" description="" />
+     <ITEM title="tiw>WA - Tacoma" description="" />
+     <ITEM title="riw>WY - Riverton" description="" />
+  </TODOFSIZE>
