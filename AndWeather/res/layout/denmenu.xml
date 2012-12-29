@@ -13,7 +13,8 @@
 
     <item android:id="@+id/radar"     android:title="Choose Radar" />
     <item android:id="@+id/obs"       android:title="Choose Obs" />
-    <item android:id="@+id/gweather"  android:title="Google Weather" />    
+    <item android:id="@+id/gweather"  android:title="Google Weather" />  
+    <item android:id="@+id/addweath"  android:title="Favorites"/>
     <item android:id="@+id/exit"      android:title="Exit" />
 </menu>
 

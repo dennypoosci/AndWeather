@@ -1,7 +1,10 @@
 package org.dennis.AndWeath;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -19,10 +22,14 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
@@ -39,6 +46,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -46,6 +54,7 @@ import android.content.pm.ResolveInfo;
 import android.content.res.XmlResourceParser;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.media.AudioManager;
 import android.net.ParseException;
 import android.os.Bundle;
@@ -56,12 +65,14 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebView.PictureListener;
 import android.webkit.WebViewClient;
@@ -111,6 +122,7 @@ public class AndWeathActivity<Picture> extends Activity {
     TextView arrHigh[] = new TextView[4];
     ImageView arrImgd[] = new ImageView[4];   
 
+    String 	dencitystate;
     Button btnRadar;
     Button btnGoogle;
     Button btnUSObs;
@@ -149,6 +161,8 @@ public class AndWeathActivity<Picture> extends Activity {
     	      this.LoadSelections();
     	      if (fntstr.contentEquals("usa")){
     	   	      webview.loadUrl("file:///sdcard/DCIM/denweb.html");
+//    	    	  webview.lo
+//    	   	      webview.loadUrl("file:///Android_res/raw/denweb.html");
     	   	         	      }
     	      else {
     	      webview.loadUrl("http://images.intellicast.com/WxImages/RadarLoop/" + fntstr + "_None_anim.gif");
@@ -260,7 +274,98 @@ public class AndWeathActivity<Picture> extends Activity {
       
         
      }
+ public void initWund(String denstr,String denstr2){
+	 //   	URL url;
+     final String updateDailyWeatherForecastUrl = "http://api.wunderground.com/api/d09917472096c37e/forecast3day/q/{latitude},{longitude}.json";
+     URL url[] = new URL [4];
+
+     try {
+     	
+         JSONArray jsonArray =  new JSONArray("[" + denstr.toString() + "]");
+         Log.i(AndWeathActivity.class.getName(),
+             "Number of entries " + jsonArray.length());
+         for (int i = 0; i < jsonArray.length(); i++) {
+           JSONObject jsonObject = jsonArray.getJSONObject(i);
+           JSONObject currentConditions = jsonObject.getJSONObject("current_observation");
+           JSONObject currentCity = currentConditions.getJSONObject("display_location");
+            ccond.setText(currentConditions.getString("weather").toString());
+           ctemp.setText(currentConditions.getString("temp_f").toString());
+           cwind.setText(currentConditions.getString("wind_string").toString());
+           city.setText(currentCity.getString("full").toString());
+			cdate.setText( currentConditions.getString("observation_time").toString());
+           String denstr3 =  getForecast(denstr2.toString());
+           JSONArray fjsonArray =  new JSONArray("[" + denstr3.toString() + "]");
+           Log.i(AndWeathActivity.class.getName(),
+               "Number of entries " + jsonArray.length());
+           
+           Point denpoint = getDisplaySize (getWindowManager().getDefaultDisplay() );
+           int maxiii = 0;
+           if (denpoint.x > 599) {
+        	   maxiii =4;
+        	   arrDay[3].setVisibility(View.VISIBLE);
+        	   arrLow[3].setVisibility(View.VISIBLE);
+        	   arrHigh[3].setVisibility(View.VISIBLE);
+        	   arrCond[3].setVisibility(View.VISIBLE);
+        	   arrImgd[3].setVisibility(View.VISIBLE);
+           }
+           else{
+           	   arrDay[3].setVisibility(View.GONE);
+        	   arrLow[3].setVisibility(View.GONE);
+        	   arrHigh[3].setVisibility(View.GONE);
+        	   arrCond[3].setVisibility(View.GONE);
+        	   arrImgd[3].setVisibility(View.GONE);
+        	   maxiii = 4;
+           }
+           for (int ii = 0; ii < fjsonArray.length(); ii++) {
+        	   JSONObject fjsonObject = new JSONObject(denstr3);
+//               JSONObject fjsonObject = fjsonArray.getJSONObject(i);
+               JSONArray forecastDays = fjsonObject.getJSONObject("forecast").getJSONObject("simpleforecast").getJSONArray("forecastday");
+               int iii = 0;
+               while (iii < maxiii){
+            	   JSONObject currentDay = forecastDays.getJSONObject(iii); 
+
+            			arrDay[iii].setText((String) currentDay.getJSONObject("date").getString("weekday_short").toString());	
+   
+            			arrLow[iii].setText((String) currentDay.getJSONObject("low").getString("fahrenheit"));	
  
+            			arrHigh[iii].setText((String) currentDay.getJSONObject("high").getString("fahrenheit"));	
+  
+            			arrCond[iii].setText((String) currentDay.getString("conditions").toString());
+            			url[iii]  =   new URL(((String) currentDay.getString("icon_url").toString()) );
+           	      	 arrImgd[iii].setImageBitmap(getRemoteImage(url[iii]));        			
+
+ //           		} else if (name.equalsIgnoreCase("icon")) {
+ //           			url[i]  = new URL("http://www.google.com" + property.getAttributes().item(0).getNodeValue() );
+ //           	      	 arrImgd[i].setImageBitmap(getRemoteImage(url[i]));        			
+ //           		}
+           	   iii = iii + 1;
+               }
+               
+           //    JSONObject fcurrentForecast = fjsonObject.getJSONObject("forecast");
+//               JSONObject fcurrentsForecast = fcurrentForecast.getJSONObject("simpleforecast");
+ //              JSONArray  forecastDays = fcurrentsForecast.getJSONArray("forecastday");
+           }
+    //       jsonObject.toString();
+         }
+     }catch (Exception e) {
+            Log.e(AndWeathActivity.class.toString(), "Failed Parse JSON");
+         city.setText("City or Zip Invalid");
+       
+    }
+
+ }
+ @SuppressWarnings("deprecation")
+private static Point getDisplaySize(final Display display) {
+	    final Point point = new Point();
+	    try {
+	        display.getSize(point);
+	    } catch (java.lang.NoSuchMethodError ignore) { // Older device
+	        point.x = display.getWidth();
+	        point.y = display.getHeight();
+	    }
+	    return point;
+	}
+
     public void InitGoogle(String denstr){
 
  //   	URL url;
@@ -445,33 +550,41 @@ public class AndWeathActivity<Picture> extends Activity {
 
   //               setResult(Activity.RESULT_OK);
             	
-    String restrr =        	cgmtedit(cdate.getText().toString());
+//              String restrr =        	cgmtedit(cdate.getText().toString());
+             String restrr =        	cdate.getText().toString();
+             String cname;
+             if (isnumeric(EditSearch.getText().toString()) == true ){
+            	cname = dencitystate.substring(0,dencitystate.length()-4).toLowerCase() + " " + lustatename(dencitystate);
+             }
+             else{
+            	 cname = EditSearch.getText().toString().substring(0,EditSearch.length()-5) + " " + lustatename(EditSearch.getText().toString()) ;
+             }
          gldenstr = 
         	  " The Current Weather for " 
-        	 + EditSearch.getText().toString() 
+        	 + cname 
         	 + " at " + restrr
         	 + " is " + ccond.getText()
              + " with a Temperature of " + ctemp.getText()
-             + "and the wind out of the " + getWind( cwind.getText())       	
+//             + "and the wind out of the " + getWind( cwind.getText())       	
              + ". Today's Weather for " 
-        	 + EditSearch.getText().toString()
+        	 + cname
         	 + " will be " + arrCond[0].getText()
              + " with a High of " + arrHigh[0].getText()
              + " and a Low of " + arrLow[0].getText()
              + ". Tommorrow's Weather for " 
-        	 + EditSearch.getText().toString()
+        	 + cname
         	 + " will be " + arrCond[1].getText()
              + " with a High of " + arrHigh[1].getText()
              + " and a Low of " + arrLow[1].getText()
              + ". " +  getDOW(arrDay[2].getText()) 
              + "'s Weather for " 
-        	 + EditSearch.getText().toString()
+        	 + cname
         	 + " will be " + arrCond[2].getText()
              + " with a High of " + arrHigh[2].getText()
              + " and a Low of " + arrLow[2].getText()
              + ". " +  getDOW(arrDay[3].getText()) 
              + "'s Weather for " 
-        	 + EditSearch.getText().toString()
+        	 + cname
         	 + " will be " + arrCond[3].getText()
              + " with a High of " + arrHigh[3].getText()
              + " and a Low of " + arrLow[3].getText()
@@ -486,7 +599,18 @@ public class AndWeathActivity<Picture> extends Activity {
 	   
 	         
 	    }
-             
+public String lustatename (String stcode){
+	int i=0;
+	
+    String[] myStTable = getResources().getStringArray(R.array.denstnames);
+
+	while (i < myStTable.length){
+		if (myStTable[i].substring(myStTable[i].length()-2).toLowerCase().endsWith(stcode.substring(stcode.length()-2).toLowerCase()))
+			return myStTable[i].substring(0,myStTable[i].length() -2).toLowerCase();
+		i = i + 1;
+	}
+    return "";
+}
 public String getWind (CharSequence wind){
     String denstr = " ";
     String CompStr = " ";
@@ -634,10 +758,169 @@ return denret;
  //       setContentView(R.layout.main);
 
     }
+    public boolean isnumeric (String denstr){
+    	char denc = denstr.charAt(0);
+    	if ((denc < '0') ||
+    	   (denc > '9')){
+    		return false;
+    	}
+    		else{
+    		return true;
+    		}
+    	}
+    public String ziptastic(String denstr2){
+//    String dencityzip;
+    final String updateDailyWeatherForecastUrl = "http://zip.elevenbasetwo.com/?zip=" + denstr2;
+   	String line = null;
+
+
+    StringBuilder builder = new StringBuilder();
+//	String denstr = "http://www.google.com/ig/api?weather=" + StrS;	 
+//	String denstr = "http://api.wunderground.com/api/87a0b809020ad1fe/conditions/q/CA/San_Francisco.json";	 
+//	String denstr = "http://api.wunderground.com/api/87a0b809020ad1fe/conditions/q/" + State  + "/" + City + ".json";	 
+		        try {
+		 
+		            DefaultHttpClient httpClient = new DefaultHttpClient();
+//	                String requestString = updateDailyWeatherForecastUrl.replace("{latitude}", latitude.toString());
+//	                requestString = requestString.replace("{longitude}", longitude.toString());
+
+		            HttpGet httpGet = new HttpGet(updateDailyWeatherForecastUrl.replace(" ", "%20"));
+//	                    DefaultHttpClient httpClient = new DefaultHttpClient();
+		 
+		            HttpResponse response = httpClient.execute(httpGet);
+		            StatusLine statusLine = response.getStatusLine();
+		            int statusCode = statusLine.getStatusCode();
+		            if (statusCode == 200) {
+		                HttpEntity entity = response.getEntity();
+		                InputStream content = entity.getContent();
+		                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+		              
+		                while ((line = reader.readLine()) != null) {
+		                  builder.append(line);
+		                }
+		                String Strs =		        builder.toString();
+		                String State = Strs.substring(Strs.length()-22,Strs.length()-19).toUpperCase();
+		                //string fcity = Strs.
+		                //String City =  Strs.substring(37,Strs.length()-2);
+		                int i;
+		                int j;
+		                for (i = 11; Strs.substring(i, i+1).startsWith(":")==false;i++){
+		                	   j=i+1;
+		                }
+		                //
+		                j=i;
+		                i=11;
+		                String City = Strs.substring(i-1,j-10);
+
+
+		                    return City + ", " + State;
+//   		            HttpEntity httpEntity = response.getEntity();
+//   		            line = EntityUtils.toString(httpEntity);
+		            } else {
+		                Log.e(AndWeathActivity.class.toString(), "Failed to download file");
+		              }
+
+		        } catch (UnsupportedEncodingException e) {
+		            line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+		        } catch (MalformedURLException e) {
+		            line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+		        } catch (IOException e) {
+	                    line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+		        }
+                return "Zip not Found";
+
+    }
     public void intnGoogle(String StrSS){
+		String citystate = null;
+		String ocitystate = "abcdefff";
+	    ArrayList<String> matches = new ArrayList<String>();
     	String denstr2 = StrSS;
-        String denstr = getXML(denstr2);
-        InitGoogle(denstr);
+    	if (denstr2.trim().equals("")){
+/*           	matches.add("Hurricane, UT");
+           	matches.add("Intervale, NH");
+           	matches.add("Las Vegas, NV");
+           	matches.add("Saint George, UT");
+           	matches.add("Mesquite, NV");
+           	matches.add("Danvers, MA");
+           	matches.add("Lake Placid, NY");
+*/
+    		InputStream stream = getResources().openRawResource(R.raw.favweath); 
+           	String dentext = convertStreamToString (stream,matches);
+            wordsList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                    matches));
+           }
+            
+ //           else {
+
+else {
+   	
+    	if (isnumeric(denstr2) == true){
+    	dencitystate = ziptastic(denstr2);
+        String denstr = getJSON(dencitystate);
+        initWund(denstr,dencitystate);
+    	}
+    	else{
+    	if (denstr2.contains(", ")){
+        String denstr = getJSON(denstr2);
+        initWund(denstr,denstr2);
+    	}
+    	else{
+ //           if (denstr2.trim() == ""){
+ //           	matches.add("Hurricane, UT");
+ //           	matches.add("intervale, NH");
+ //           	matches.add("Las Vegas, NV");
+ //           }
+            
+ //           else {
+            String denstrbld = getMJSON(denstr2.trim());
+            String denstr = denstrbld.toString();
+ //           } 
+
+            
+            try {
+
+                JSONArray jsonArray =  new JSONArray("[" + denstr.substring(14).toString() + "]");
+                Log.i(AndWeathActivity.class.getName(),
+                    "Number of entries " + jsonArray.length());
+                for (int i = 0; i < jsonArray.length(); i++) {
+                  JSONObject jsonObject = jsonArray.getJSONObject(i);
+//                  JSONObject currentState = jsonObject.getJSONObject("State");
+//                  JSONObject currentCity = jsonObject.getJSONObject("City");
+                  String State = jsonObject.getString("State").toString();
+                  String City = jsonObject.getString("City").toString();
+                 
+                  String Zip =  jsonObject.getString("Zipcode").toString();
+ //                 jsonObject.getString("State").toString();
+                  citystate = City.toString() + ", " + State.toString();
+if (!citystate.equals(ocitystate.toString())){
+	              matches.add(citystate.toString());}
+                  ocitystate = citystate;
+                  if (i==0){
+                	  denstr = getJSON(citystate);
+                	  denstr2 = citystate;
+                  }
+          		
+ /*                  ccond.setText(currentConditions.getString("weather").toString());
+                  ctemp.setText(currentConditions.getString("temp_f").toString());
+                  cwind.setText(currentConditions.getString("wind_string").toString());
+                  city.setText(currentCity.getString("full").toString());
+       			cdate.setText( currentConditions.getString("observation_time").toString());
+       			*/
+                }
+                }catch (Exception e) {
+                    Log.e(AndWeathActivity.class.toString(), "Failed Parse JSON");
+                 city.setText("City or Zip Invalid");
+           
+            }
+                wordsList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                        matches));
+
+            initWund(denstr,denstr2);      
+    	}
+            }
+    	}
+
+ //       InitGoogle(denstr);
         flip.setDisplayedChild(1);    
     }
 
@@ -681,6 +964,12 @@ return denret;
                 return true;
               
                 case R.id.gweather:
+           	        initWebR();
+//              setContentView(R.layout.main);
+                    flip.setDisplayedChild(1);
+                return true;
+                
+                case R.id.addweath:
            	        initWebR();
 //              setContentView(R.layout.main);
                     flip.setDisplayedChild(1);
@@ -772,18 +1061,161 @@ return denret;
           	  	  }
         }
     }
-    public static String getXML(String StrS){
+    public static String getForecast(String Strs){
+
     	String line = null;
-    	String denstr = "http://www.google.com/ig/api?weather=" + StrS;	 
+       	String State = Strs.substring(Strs.length() -2 ).toUpperCase();
+    	String City =  Strs.substring(0,Strs.length() - 4);
+
+        StringBuilder builder = new StringBuilder();
+        final String updateDailyWeatherForecastUrl = "http://api.wunderground.com/api/d09917472096c37e/forecast/q/" + State  + "/" + City + ".json";       
+//   	String denstr = "http://www.google.com/ig/api?weather=" + StrS;	 
+//    	String denstr = "http://api.wunderground.com/api/87a0b809020ad1fe/conditions/q/CA/San_Francisco.json";	 
+//    	String denstr = "http://api.wunderground.com/api/87a0b809020ad1fe/conditions/q/" + State  + "/" + City + ".json";	 
     		        try {
     		 
     		            DefaultHttpClient httpClient = new DefaultHttpClient();
-    		            HttpPost httpPost = new HttpPost(denstr.replace(" ", "%20"));
+//    	                String requestString = updateDailyWeatherForecastUrl.replace("{latitude}", latitude.toString());
+//    	                requestString = requestString.replace("{longitude}", longitude.toString());
+ 
+    		            HttpGet httpGet = new HttpGet(updateDailyWeatherForecastUrl.replace(" ", "%20"));
+//   	                    DefaultHttpClient httpClient = new DefaultHttpClient();
+   		 
+    		            HttpResponse response = httpClient.execute(httpGet);
+    		            StatusLine statusLine = response.getStatusLine();
+    		            int statusCode = statusLine.getStatusCode();
+    		            if (statusCode == 200) {
+    		                HttpEntity entity = response.getEntity();
+    		                InputStream content = entity.getContent();
+    		                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+    		              
+    		                while ((line = reader.readLine()) != null) {
+    		                  builder.append(line);
+    		                }
+
+ //   		            HttpEntity httpEntity = response.getEntity();
+ //   		            line = EntityUtils.toString(httpEntity);
+    		            } else {
+   		                Log.e(AndWeathActivity.class.toString(), "Failed to download file");
+    		              }
+
+    		        } catch (UnsupportedEncodingException e) {
+    		            line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+    		        } catch (MalformedURLException e) {
+    		            line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+    		        } catch (IOException e) {
+    	                    line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+    		        }
     		 
-    		            HttpResponse httpResponse = httpClient.execute(httpPost);
-    		            HttpEntity httpEntity = httpResponse.getEntity();
+    		        return builder.toString();
+    		 
+   	
+    }
+    public static String getJSON(String Strs){
+    	String line = null;
+    	String State = Strs.substring(Strs.length() -2 ).toUpperCase();
+    	String City =  Strs.substring(0,Strs.length() - 4);
+        StringBuilder builder = new StringBuilder();
+        
+//   	String denstr = "http://www.google.com/ig/api?weather=" + StrS;	 
+//    	String denstr = "http://api.wunderground.com/api/87a0b809020ad1fe/conditions/q/CA/San_Francisco.json";	 
+    	String denstr = "http://api.wunderground.com/api/87a0b809020ad1fe/conditions/q/" + State  + "/" + City + ".json";	 
+    		        try {
+    		 
+    		            DefaultHttpClient httpClient = new DefaultHttpClient();
+    		            HttpGet httpGet = new HttpGet(denstr.replace(" ", "%20"));
+    		 
+    		            HttpResponse response = httpClient.execute(httpGet);
+    		            StatusLine statusLine = response.getStatusLine();
+    		            int statusCode = statusLine.getStatusCode();
+    		            if (statusCode == 200) {
+    		                HttpEntity entity = response.getEntity();
+    		                InputStream content = entity.getContent();
+    		                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+    		              
+    		                while ((line = reader.readLine()) != null) {
+    		                  builder.append(line);
+    		                }
+
+ //   		            HttpEntity httpEntity = response.getEntity();
+ //   		            line = EntityUtils.toString(httpEntity);
+    		            } else {
+   		                Log.e(AndWeathActivity.class.toString(), "Failed to download file");
+    		              }
+
+    		        } catch (UnsupportedEncodingException e) {
+    		            line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+    		        } catch (MalformedURLException e) {
+    		            line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+    		        } catch (IOException e) {
+    	                    line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+    		        }
+    		 
+    		        return builder.toString();
+    		 
+    		}
+   
+    public static String getMJSON(String Strs){
+    	String line = null;
+    	String updenstr = Strs.toUpperCase();
+    	String State = Strs.substring(Strs.length() -2 ).toUpperCase();
+    	String City =  Strs.substring(0,Strs.length() - 4);
+        StringBuilder builder = new StringBuilder();
+        
+//   	String denstr = "http://www.google.com/ig/api?weather=" + StrS;	 
+//    	String denstr = "http://api.wunderground.com/api/87a0b809020ad1fe/conditions/q/CA/San_Francisco.json";	 
+    	String denstr = "http://gomashup.com/json.php?fds=geo/usa/zipcode/city/" + updenstr + "&jsoncallback=?";	 
+    		        try {
+    		 
+    		            DefaultHttpClient httpClient = new DefaultHttpClient();
+    		            HttpGet httpGet = new HttpGet(denstr.replace(" ", "%20"));
+    		 
+    		            HttpResponse response = httpClient.execute(httpGet);
+    		            StatusLine statusLine = response.getStatusLine();
+    		            int statusCode = statusLine.getStatusCode();
+    		            if (statusCode == 200) {
+    		                HttpEntity entity = response.getEntity();
+    		                InputStream content = entity.getContent();
+    		                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+    		              
+    		                while ((line = reader.readLine()) != null) {
+    		                  builder.append(line);
+    		                }
+
+ //   		            HttpEntity httpEntity = response.getEntity();
+ //   		            line = EntityUtils.toString(httpEntity);
+    		            } else {
+   		                Log.e(AndWeathActivity.class.toString(), "Failed to download file");
+    		              }
+
+    		        } catch (UnsupportedEncodingException e) {
+    		            line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+    		        } catch (MalformedURLException e) {
+    		            line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+    		        } catch (IOException e) {
+    	                    line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+    		        }
+    		 
+    		        return builder.toString();
+    		 
+    		}
+   
+   
+    public static String getXML(String StrS){
+    	String line = null;
+
+    	String denstr = "http://www.google.com/ig/api?weather=" + StrS;	 
+ //   	String denstr = "http://api.wunderground.com/api/87a0b809020ad1fe/conditions/q/CA/San_Francisco.json";	 
+    		        try {
+    		 
+    		            DefaultHttpClient httpClient = new DefaultHttpClient();
+    		            HttpGet httpGet = new HttpGet(denstr.replace(" ", "%20"));
+   		 
+    		            HttpResponse response = httpClient.execute(httpGet);
+    		            HttpEntity httpEntity = response.getEntity();
     		            line = EntityUtils.toString(httpEntity);
-    		 
+    		       
+
     		        } catch (UnsupportedEncodingException e) {
     		            line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
     		        } catch (MalformedURLException e) {
@@ -866,6 +1298,28 @@ return denret;
         }
 
         return todoItems;
+    }
+    private static String convertStreamToString(InputStream is, ArrayList<String> matches) {
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append((line + "\n"));
+                matches.add(line);
+            }
+        } catch (IOException e) {
+            Log.w("LOG", e.getMessage());
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                Log.w("LOG", e.getMessage());
+            }
+        }
+        return sb.toString();
     }
     
     private ArrayList<String> PrepareSTCFromXml() {
