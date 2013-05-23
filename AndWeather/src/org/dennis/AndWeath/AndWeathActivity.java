@@ -244,7 +244,7 @@ public class AndWeathActivity<Picture> extends Activity {
 //      });
 
       setVolumeControlStream(AudioManager.STREAM_MUSIC);
-
+      initBtns();
       this.LoadSelections();
       this.LoadSTCSelections();
       webview.loadUrl("http://images.intellicast.com/WxImages/RadarLoop/" + fntstr + "_None_anim.gif");
@@ -253,7 +253,7 @@ public class AndWeathActivity<Picture> extends Activity {
         flip.setInAnimation(this,android.R.anim.fade_in);
         flip.setOutAnimation(this,android.R.anim.fade_out);
         flip.setDisplayedChild(1);
-        initBtns();
+
         wordsList.setClickable(true);
         wordsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -1016,6 +1016,7 @@ if (!citystate.equals(ocitystate.toString())){
 
           	  	  if (selectedFSize.contains(listFSIZE.get(ii).toString()))   {
                   fntstr = listFSIZE.get(ii).toString().substring(0, 3);
+                  btnRadar.setText(listFSIZE.get(ii).toString().substring(4, 6) + " Radar");
           		  fntint[ii]  = 1;
           	  
             }
@@ -1052,6 +1053,8 @@ if (!citystate.equals(ocitystate.toString())){
 
           	  	  if (selectedFSize.contains(listFSIZE.get(ii).toString()))   {
                   stcstr = listFSIZE.get(ii).toString().substring(22, 24);
+                  btnUSObs.setText(stcstr.toString().concat(" Obs"));
+ //                 this.btnUSObs.setText( this.btnUSObs.toString());
           		  stcint[ii]  = 1;
           	  
             }

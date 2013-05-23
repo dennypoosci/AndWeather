@@ -505,7 +505,7 @@ android:textSize="17sp"
     android:layout_x="2dip"
     android:layout_y="313dip"
     android:orientation="horizontal" 
-    android:visibility="gone">
+    >
 
     <Button android:text="@string/Radar" android:layout_weight="1"  android:id="@+id/btnRadar" android:layout_height="fill_parent" android:layout_width="wrap_content"></Button>
     <Button android:text="@string/NWSObs" android:layout_weight="1"  android:id="@+id/btnNSWObs" android:layout_height="fill_parent" android:layout_width="wrap_content"></Button>
